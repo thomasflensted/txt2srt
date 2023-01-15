@@ -1,6 +1,7 @@
 # ignore files
 .DS_Store
 new_file.txt
+new_file.srt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

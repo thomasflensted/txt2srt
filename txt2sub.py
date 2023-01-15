@@ -1,6 +1,5 @@
-import pysrt
+import os
 import sys
-import math
 from datetime import timedelta
 
 
@@ -13,7 +12,7 @@ def main():
     input_file = sys.argv[1]
     new_filename = "new_file.txt"
     generate_new_text_file(input_file, new_filename)
-    # convert_to_srt(txt_file)
+    convert_to_srt(new_filename)
 
 
 def generate_new_text_file(in_file, new_filename):
@@ -29,12 +28,7 @@ def generate_new_text_file(in_file, new_filename):
             seconds += 3
             timeEnd = create_timing_string(seconds)
 
-            if count == len(lines) - 1:
-                new_file.write(
-                    f"{count+1} {timeStart} --> {timeEnd}\n{line}")
-            else:
-                new_file.write(
-                    f"{count+1} {timeStart} --> {timeEnd}\n{line}\n\n")
+            new_file.write(f"{count+1}\n{timeStart} --> {timeEnd}\n{line}\n\n")
 
 
 def create_timing_string(seconds):
@@ -50,21 +44,10 @@ def get_lines_list(in_file):
         return [line.strip() for line in in_file.readlines() if len(line.strip()) > 0]
 
 
-def convert_to_srt(file):
+def convert_to_srt(filename):
 
-    with open(file) as f:
-
-        sub_list = f.readlines()
-
-    sub_list = [line.strip() for line in sub_list]
-
-    sub_filename = f"{file.split('.')[0]}.srt"
-
-    sub_file = open(sub_filename, "w")
-    sub_file.close()
-
-    subs = pysrt.open(sub_filename)
-    subs[0].text = "Hello, there"
+    base = os.path.splitext(filename)[0]
+    os.rename(filename, base + ".srt")
 
 
 main()
