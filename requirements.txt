@@ -1,0 +1,4 @@
+autopep8==2.0.1
+chardet==5.1.0
+pycodestyle==2.10.0
+pysrt==1.1.2
