@@ -1,5 +1,6 @@
 import os
 import sys
+from os import path
 from datetime import timedelta
 
 
@@ -7,12 +8,22 @@ def main():
 
     if (len(sys.argv) != 2):
         print("Usage: python txt2sub.py <filepath>")
-        return 1
+        return False
 
     input_file = sys.argv[1]
-    new_filename = "new_file.txt"
+
+    if not fileExistsAndIsTxt(input_file):
+        print("File does not exist or is not a txt file")
+        return False
+
+    new_filename = input_file.split(".")[0] + "-subs.txt"
     generate_new_text_file(input_file, new_filename)
     convert_to_srt(new_filename)
+
+
+def fileExistsAndIsTxt(filename):
+
+    return path.exists(filename) and filename.split(".")[1] == "txt"
 
 
 def generate_new_text_file(in_file, new_filename):
