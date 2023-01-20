@@ -16,9 +16,8 @@ def main():
         print("File does not exist or is not a txt file")
         return False
 
-    new_filename = input_file.split(".")[0] + "-subs.txt"
+    new_filename = input_file.split(".")[0] + "-subs.srt"
     generate_new_text_file(input_file, new_filename)
-    convert_to_srt(new_filename)
 
 
 def fileExistsAndIsTxt(filename):
@@ -53,12 +52,6 @@ def get_lines_list(in_file):
     with open(in_file, "r") as in_file:
 
         return [line.strip() for line in in_file.readlines() if len(line.strip()) > 0]
-
-
-def convert_to_srt(filename):
-
-    base = os.path.splitext(filename)[0]
-    os.rename(filename, base + ".srt")
 
 
 main()
