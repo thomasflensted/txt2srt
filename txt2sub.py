@@ -55,10 +55,16 @@ def get_lines_list(in_file):
 
         raw_lines = in_file.readlines()
 
-        for line in raw_lines:
-            cur_str = line
+        clean_lines = []
+        cur_str = ""
 
-        # return [line.strip() for line in in_file.readlines() if len(line.strip()) > 0]
+        for i in range(len(raw_lines)):
+            if raw_lines[i] != "\n":
+                print(raw_lines[i])
+            else:
+                print("is new line")
+
+    # return [line.strip() for line in in_file.readlines() if len(line.strip()) > 0]
 
 
 main()
